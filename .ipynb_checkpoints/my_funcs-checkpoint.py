@@ -178,7 +178,7 @@ def cartopy_era5_animation_vector(ds, color_var, vmin, vmax, cmap=cmo.thermal, o
 
 
 
-def download_era5_cdsapi(var, month, year, dataset="reanalysis-era5-single-levels", path=''):
+def download_era5_cdsapi(var, month, year, dataset="reanalysis-era5-single-levels"):
     
     cds = cdsapi.Client()# dataset you want to read
 
@@ -207,9 +207,9 @@ def download_era5_cdsapi(var, month, year, dataset="reanalysis-era5-single-level
               'format': 'netcdf'
              }
     
-    fl = cds.retrieve(dataset, params) # download the file 
+    fl = cds.retrieve(dataset, params)# download the file 
     
-    fl.download(path+str(var)+'_'+str(year)+str(month)+'.nc') # load into memory
+    fl.download("../data/era5_"+str(var)+'_'+str(year)+str(month)+'.nc')# load into memory
         
     return
 
