@@ -1,6 +1,8 @@
 import xarray as xr
 import os
 import pathlib
+from tqdm.notebook import tqdm
+
 
 def read_sd(path):
 
@@ -60,7 +62,7 @@ def read_sd(path):
     # Loading the files
     
     tmp = []
-    for i in range(len(files)):
+    for i in tqdm(range(len(files))):
         # [dat] chooses just the data variables. The files had a mismatch in the available variables.
         tmp.append(xr.open_dataset(files[i],engine='netcdf4').sel(trajectory=1067).swap_dims({'obs':'time'})[dat]) 
     ds = xr.concat(tmp,dim='time')
